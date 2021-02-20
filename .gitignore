@@ -443,3 +443,6 @@ $RECYCLE.BIN/
 
 
 appsettings.json
+client/ssl
+client/ssl/server.crt
+client/ssl/server.key
