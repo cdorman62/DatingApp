@@ -13,10 +13,10 @@ namespace API.Controllers
     [Authorize]
     public class LikesController : BaseApiController
     {
-        public IUnitOfWork _unitOfWork;
+        private readonly IUnitOfWork _unitOfWork;
         public LikesController(IUnitOfWork unitOfWork)
         {
-            unitOfWork = _unitOfWork;
+            _unitOfWork = unitOfWork;
         }
 
         [HttpPost("{username}")]
@@ -53,7 +53,9 @@ namespace API.Controllers
             likesParams.UserId = User.GetUserId();
             var users = await _unitOfWork.LikesRepository.GetUserLikes(likesParams);
 
-            Response.AddPaginationHeader(users.CurrentPage, users.PageSize, users.TotalCount, users.TotalPages);
+            Response.AddPaginationHeader(users.CurrentPage,
+                users.PageSize, users.TotalCount, users.TotalPages);
+
             return Ok(users);
         }
     }
