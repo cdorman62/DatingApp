@@ -23,7 +23,6 @@ export class MessageService {
   constructor(private http: HttpClient) { }
 
   createHubConnection(user: User, otherUsername: string){
-    this.bus
     this.hubConnection = new HubConnectionBuilder()
       .withUrl(this.hubUrl + 'message?user=' + otherUsername, {
         accessTokenFactory: () => user.token
